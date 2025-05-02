@@ -19,11 +19,4 @@ jobs:
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run Migrations
-        env:
-          DB_CONNECTION: pgsql
-          DB_HOST: centerbeam.proxy.rlwy.net
-          DB_PORT: 5432
-          DB_DATABASE: railway
-          DB_USERNAME: postgres
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: php artisan migrate --force
