@@ -18,12 +18,6 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Generate App Key
-        run: php artisan key:generate
-
-      - name: Set Permissions
-        run: chmod -R 775 storage bootstrap/cache
-
       - name: Run Migrations
         env:
           DB_CONNECTION: pgsql
@@ -31,5 +25,5 @@ jobs:
           DB_PORT: 5432
           DB_DATABASE: railway
           DB_USERNAME: postgres
-          DB_PASSWORD: ${{ secrets.RAILWAY_DB_PASSWORD }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: php artisan migrate --force
