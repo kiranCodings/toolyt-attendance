@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         echo "Seeding 4 ExternalUsers...\n";
         ExternalUsers::factory(4)->create();
 
-        $count = 1_00; // number of records
+        $count = 50; // number of records
         echo "Seeding $count Attendance records...\n";
         Attendance::factory($count)->create();
     
