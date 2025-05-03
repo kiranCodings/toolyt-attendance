@@ -24,5 +24,3 @@ jobs:
       - name: Seed Database
         run: php artisan db:seed --force
 
-      - name: Serve Laravel App on Port 8080
-        run: php artisan serve --host=0.0.0.0 --port=8080
