@@ -84,3 +84,7 @@ Visit [http://localhost:8000](http://localhost:8000) in your browser.
 3. The results will show user details and a table of attendance records, including login/logout times and total time.
 
 ---
+## Application Screenshots
+
+### Attendance Search
+![Search Results](images/search-results.png)
