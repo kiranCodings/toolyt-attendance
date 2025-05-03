@@ -1,26 +1,36 @@
 name: Deploy & Migrate
 
 on:
-  workflow_dispatch: # Run this manually from GitHub UI
+  workflow_dispatch: # manual trigger from GitHub UI
 
 jobs:
-  migrate:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup PHP
+      - name: ⚙️ Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          extensions: mbstring, pdo, pdo_pgsql
+          tools: composer
 
-      - name: Install Composer Dependencies
+      - name: 📦 Install Composer Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Run Migrations
-        run: php artisan migrate --force
-      
-      - name: Seed Database
-        run: php artisan db:seed --force
+      - name: 🛠️ Install Railway CLI
+        run: curl -fsSL https://railway.app/install.sh | sh
+
+      - name: 🚀 Deploy to Railway
+        run: railway up --service toolyt-attendance
+        env:
+          RAILWAY_TOKEN: af46198a-8fc2-4138-a236-4655305e07f5
+
+      - name: 🔁 Migrate and Seed DB
+        run: |
+          php artisan migrate --force
+          php artisan db:seed --force
 
