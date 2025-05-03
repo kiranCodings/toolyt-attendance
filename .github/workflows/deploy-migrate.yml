@@ -21,13 +21,6 @@ jobs:
       - name: 📦 Install Composer Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: 🛠️ Install Railway CLI
-        run: curl -fsSL https://railway.app/install.sh | sh
-
-      - name: 🚀 Deploy to Railway
-        run: railway up --service toolyt-attendance
-        env:
-          RAILWAY_TOKEN: af46198a-8fc2-4138-a236-4655305e07f5
 
       - name: 🔁 Migrate and Seed DB
         run: |
